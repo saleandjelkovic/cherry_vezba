@@ -39,10 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'books',
     'widget_tweaks',
     'user_login',
+    'invitations',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,6 +134,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'cherry_app/media')
 # login/logout URLs
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# invitations
+INVITATIONS_EMAIL_SUBJECT_PREFIX = 'Come and join us! '
+INVITATIONS_SIGNUP_REDIRECT = 'accounts/signup/'
+# INVITATIONS_LOGIN_REDIRECT
+
+# emailing
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'sasajovicic.sj@gmail.com'
+EMAIL_HOST_PASSWORD = 'Tupson!1'
+EMAIL_USE_TLS = True
+
 
 JET_DEFAULT_THEME = 'light-blue'
 
