@@ -11,5 +11,6 @@ urlpatterns = [
 	path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 	path('admin/', admin.site.urls),
 	path('', index, name='index'),
-	path('dashboard', include('books.urls')),
+	path('dashboard/', include('books.urls')),
+	path('accounts/', include('user_login.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books',
     'widget_tweaks',
+    'user_login',
 ]
 
 MIDDLEWARE = [
@@ -126,13 +127,17 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cherry_app/media')
 
+# login/logout URLs
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 JET_DEFAULT_THEME = 'light-blue'
 
 JET_THEMES = [
     {
-        'theme': 'default', # theme folder name
-        'color': '#47bac1', # color of the theme's button in user menu
-        'title': 'Default' # theme title
+        'theme': 'default',  # theme folder name
+        'color': '#47bac1',  # color of the theme's button in user menu
+        'title': 'Default'  # theme title
     },
     {
         'theme': 'green',
