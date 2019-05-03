@@ -42,11 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'books',
     'widget_tweaks',
-    'user_login',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'user_login',
     'invitations',
 ]
 
-SITE_ID = 1
+SITE_ID = 4
+ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,10 +64,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cherry_app.urls'
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,8 +149,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # invitations
 INVITATIONS_EMAIL_SUBJECT_PREFIX = 'Come and join us! '
-INVITATIONS_SIGNUP_REDIRECT = 'accounts/signup/'
-# INVITATIONS_LOGIN_REDIRECT
+INVITATIONS_INVITATION_ONLY = True
 
 # emailing
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,0 +1,25 @@
+{% extends "books/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+	<h1>{% trans "Sign Up" %}</h1>
+
+	<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+	<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+		{% if messages %}
+			<div class="alert alert-danger alert-dismissible fade show">
+				{% for message in messages %}
+					<strong>{{message}}</strong>
+				{% endfor %}
+			</div>
+	  	{% endif %}
+		<button type="submit">{% trans "Sign Up" %} &raquo;</button>
+	</form>
+
+{% endblock %}
