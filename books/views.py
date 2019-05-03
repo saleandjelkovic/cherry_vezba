@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404
 from .models import Author, Book, BookForm
+from django.urls import reverse
 
 
 def index(request):
@@ -39,3 +40,19 @@ def enter_new_book(request):
 	context = {'form': form}
 
 	return render(request, 'books/enter_new_book.html', context)
+
+
+def edit_books(request, book_id):
+	book = Book.objects.get(pk=book_id)
+
+	if (request.method == 'POST'):
+		form = BookForm(request.POST, request.FILES, instance=book)
+		if(form.is_valid()):
+			form.save()
+			return redirect(reverse('dashboard:details_books', args=[book_id]))
+	else:
+		form = BookForm(instance=book)
+
+	context = {'book': book, 'form': form}
+
+	return render(request, 'books/edit_books.html', context)
