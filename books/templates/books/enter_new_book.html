@@ -9,9 +9,11 @@
 		<form method="post" novalidate enctype="multipart/form-data">
 			{% csrf_token %}
 			{% include 'includes/bs4_form.html' with form=form %}
-			
-			<button type="submit" class="btn btn-primary">Submit</button>
-			<a href="./" class="btn btn-primary btn-xl page-scroll float-right">Back</a>
+			<div class="row custom_buttons">
+				<a href="./" class="btn btn-outline-danger page-scroll btn-lg col-md-3">Back</a>
+				<button type="submit" class="btn btn-outline-secondary btn-lg col-md-3 offset-md-2" name="save_and_add_another">Save and add another</button>
+				<button type="submit" class="btn btn-outline-primary btn-lg col-md-3">Save</button>
+			</div>
 		</form>
 	</div>
 {% endblock %}

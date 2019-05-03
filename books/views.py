@@ -29,7 +29,10 @@ def enter_new_book(request):
 		form = BookForm(request.POST, request.FILES)
 		if (form.is_valid()):
 			form.save()
-			return redirect('dashboard:dashboard')
+			if ('save_and_add_another' in request.POST):
+				return redirect('dashboard:enter_new_book')
+			else:
+				return redirect('dashboard:dashboard')
 	else:
 		form = BookForm()
 
