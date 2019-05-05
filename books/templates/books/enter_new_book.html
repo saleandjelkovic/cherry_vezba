@@ -1,5 +1,9 @@
 {% extends "books/base.html" %}
 
+{% block other_css %}
+	{{ form.media.css }}
+{% endblock %}
+
 {% block title %}
 	Dashboard
 {% endblock %}
@@ -16,4 +20,8 @@
 			</div>
 		</form>
 	</div>
+{% endblock %}
+
+{% block other_js %}
+	{{ form.media.js }}
 {% endblock %}
