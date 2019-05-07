@@ -19,7 +19,8 @@ class Book(models.Model):
 	description = models.TextField()
 	comparible = models.URLField(max_length=200)
 	co_author_name = models.ManyToManyField(Author, related_name='co_author')
-	co_author_email = models.CharField(max_length=100)
+	# co_author_email = models.CharField(max_length=100)
+	co_author_email = models.ManyToManyField(Author, related_name='co_author_email')
 	co_author_instructions = models.TextField()
 	# multiple should be possible, so use multiselectfield - https://pypi.org/project/django-multiselectfield/ - https://www.youtube.com/watch?v=5jWJBpS0tkg
 	# author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='author')
@@ -33,6 +34,7 @@ class Book(models.Model):
 class BookForm(forms.ModelForm):
 	author = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget, queryset=Author.objects.all())
 	co_author_name = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget, queryset=Author.objects.all())
+	co_author_email = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget, queryset=Author.objects.all())
 
 	class Meta:
 		model = Book
