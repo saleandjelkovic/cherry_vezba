@@ -5,3 +5,7 @@
 .custom_buttons a, button {
 	margin: 0 14px;
 }
+
+.custom_co_authors span {
+	color: #270446;
+}

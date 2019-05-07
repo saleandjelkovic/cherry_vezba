@@ -22,7 +22,6 @@ class Book(models.Model):
 	# co_author_email = models.CharField(max_length=100)
 	co_author_email = models.ManyToManyField(Author, related_name='co_author_email')
 	co_author_instructions = models.TextField()
-	# multiple should be possible, so use multiselectfield - https://pypi.org/project/django-multiselectfield/ - https://www.youtube.com/watch?v=5jWJBpS0tkg
 	# author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='author')
 	author = models.ManyToManyField(Author, related_name='author')
 	cover = models.ImageField(upload_to='cover_image/', blank=False)
@@ -34,8 +33,13 @@ class Book(models.Model):
 class BookForm(forms.ModelForm):
 	author = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget, queryset=Author.objects.all())
 	co_author_name = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget, queryset=Author.objects.all())
+	# co_author_name = forms.ModelChoiceField(queryset=Author.objects.all())
 	co_author_email = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget, queryset=Author.objects.all())
 
 	class Meta:
 		model = Book
 		fields = '__all__'
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['co_author_email'].queryset = Author.objects.none()

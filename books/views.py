@@ -56,3 +56,12 @@ def edit_books(request, book_id):
 	context = {'book': book, 'form': form}
 
 	return render(request, 'books/edit_books.html', context)
+
+
+# getting AJAX's data and using it to query our DB
+def load_emails(request):
+	author_id = request.GET.getlist('authorId[]')
+	# print(author_id)
+	mails = Author.objects.filter(pk__in=author_id)
+
+	return render(request, 'books/displaying_emails_using_ajax.html', {'mails': mails})
