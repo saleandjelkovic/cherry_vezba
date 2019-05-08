@@ -13,11 +13,23 @@
 				<img src='/media/{{ book.cover }}' width='70%' height='450px' />
 				<h1>{{ book.title }}</h1>
 				<p>{{ book.subtitle }}</p>
+				<h5>Description:</h5>
 				<p>{{ book.description }}</p>
-				<p>{{ book.author }}</p>
-				<p>{{ book.comparible }}</p>
-				<p>{{ book.co_author_name }}</p>
-				<p>{{ book.co_author_email }}</p>
+				<h5>Authors:</h5>
+				{% for x in book.author.all %}
+					<p>{{ x }};</p>
+				{% endfor %}
+				<h5>Comparible:</h5>
+				<a href="{{ book.comparible }}"><p>{{ book.comparible }}</p></a>
+				<h5>Co authors:</h5>
+				{% for x in book.co_author_name.all %}
+					<p>{{ x }}</p>
+				{% endfor %}
+				<h5>Co authors emails:</h5>
+				{% for x in book.co_author_email.all %}
+					<p>{{ x }}</p>
+				{% endfor %}
+				<h5>Co authors instructions:</h5>
 				<p>{{ book.co_author_instructions }}</p>
 				<a href="../" class="btn btn-outline-danger page-scroll btn-lg page-scroll">Back</a>
 				<a href="edit/" class="btn btn-outline-primary btn-lg page-scroll">Edit</a>

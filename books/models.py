@@ -43,3 +43,13 @@ class BookForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.fields['co_author_email'].queryset = Author.objects.none()
+
+		# SKONTAJ
+		# if('authorId[]' in self.data):
+		# 	try:
+		# 		country_id = int(self.data.get('authorId[]'))
+		# 		self.fields['co_author_email'].queryset = Author.objects.filter(country_id=country_id).order_by('name')
+		# 	except (ValueError, TypeError):
+		# 		pass  # invalid input from the client; ignore and fallback to empty City queryset
+		# elif(self.instance.pk):
+		# 	self.fields['co_author_email'].queryset = self.instance.authorId.city_set.order_by('name')
