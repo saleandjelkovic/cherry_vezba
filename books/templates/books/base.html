@@ -11,45 +11,40 @@
 </head>
 <body>
 	<div class="container">
-		<nav class="navbar-expand-lg navbar navbar-dark bg-dark">
-		  <a class="navbar-brand" href="/">Navbar</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-		      </li>
-		    </ul>
-		    {% if request.user.is_authenticated %}
-		    	<ul class="navbar-nav">
-		    		<li class="nav-item dropdown">
-		        		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    				Welcome {{ request.user.username }}
-		    			</a>
-		    			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          		<a class="dropdown-item" href="../admin/">Profile</a>
-			          		<a class="dropdown-item" href="{% url 'account_email' %}">Change E-mail</a>
-			          		<a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a>
-			          		<a class="dropdown-item" href="{% url 'account_reset_password' %}">Reset Password</a>
-			          		<div class="dropdown-divider"></div>
-			         		<a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
-		        		</div>
-		    		</li>
-		    	</ul>
-		    {% else %}
-			    <ul class="navbar-nav">
-			    	<li class="nav-item">
-			    		<a class="nav-link" href="{% url 'account_login' %}">Login</a>
-			    	</li>
-			    </ul>
-		    {% endif %}
-		  </div>
+		<nav class="navbar" id="navID">
+			<button type="button" onclick="myFunc(this)" class="toggle-collapse" id="toggle-button">
+				<span class="toggle-icon">
+					
+				</span>				
+			</button>
+			<ul class="side-nav">
+				<li class="nav-item">
+					<a href="#" class="site-name">Prvi link</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Home</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Blog</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Features</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Pricing</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">Contact Us</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fab fa-facebook-f"></i>
+						<i class="fab fa-twitter-f"></i>
+						<i class="fab fa-instagram-f"></i>
+						<i class="fab fa-youtube-f"></i>
+					</a>
+				</li>
+			</ul>
 		</nav>
 	</div>
 	<div class="container">
@@ -57,7 +52,7 @@
 
 		{% endblock %}
 	</div>
-
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 	<script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
